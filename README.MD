@@ -10,6 +10,8 @@ npm install && npm start
 2. Invoke in start()
 3. Setup .env in the root
 4. Add MONGO_URI with correct value
+5. Add JWT_SECRET with correct value
+6. Add JWT_LIFETIME with correct value
 
 #### Routers
 
