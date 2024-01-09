@@ -86,7 +86,7 @@ export const showAddEdit = async (jobId) => {
     enableInput(false);
 
     try {
-      const response = await fetch(`/api/v1/jobs/${JobId}`, {
+      const response = await fetch(`/api/v1/jobs/${jobId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ export const showAddEdit = async (jobId) => {
 export const showDelete = async (productId) => {
   enableInput(false);
   try {
-    const response = await fetch(`/api/v1/products/${productId}`, {
+    const response = await fetch(`/api/v1/products/${jobId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
