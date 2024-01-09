@@ -96,9 +96,9 @@ export const showAddEdit = async (jobId) => {
 
       const data = await response.json();
       if (response.status === 200) {
-        company.value = data.job.company;
-        position.value = data.job.position;
-        status.value = data.job.status;
+        company.value = data.company;
+        position.value = data.position;
+        status.value = data.status;
         addingJob.textContent = "update";
         message.textContent = "";
         addEditDiv.dataset.id = jobId;
@@ -119,30 +119,31 @@ export const showAddEdit = async (jobId) => {
   }
 };
 
-export const showDelete = async (productId) => {
+export const showDelete = async (jobId) => {
   enableInput(false);
   try {
-    const response = await fetch(`/api/v1/products/${jobId}`, {
+    const response = await fetch(`/api/v1/jobs/${jobId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
-    const data = await response.json();
+
+    // Check if the response's content type is JSON
+    const data = await response.text();
     if (response.status === 200) {
-      addingProduct.textContent = "delete";
-      message.textContent = data.msg;
-      showProducts();
+      addingJob.textContent = "delete";
+      message.textContent = data;
+      showJobs();
     } else {
-      // might happen if the list has been updated since last display
       message.textContent = "The jobs entry was not found";
-      showProducts();
+      showJobs();
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
     message.textContent = "A communications error has occurred.";
-    showProducts();
+    showJobs();
   }
   enableInput(true);
 };
